@@ -10,22 +10,20 @@ function App() {
     
     try {
       setStatus('loading');
-      const response = await fetch("https://www.loops.so/api/v1/forms/8562539f876179b3d93d19c1210a61e0", {
+      const response = await fetch("https://submit.loops.so/8562539f876179b3d93d19c1210a61e0", {
         method: "POST",
-        body: JSON.stringify({ email }),
         headers: {
           "Content-Type": "application/json",
         },
+        body: JSON.stringify({ email }),
+        mode: 'no-cors'
       });
 
-      if (response.ok) {
-        setEmail('');
-        setStatus('success');
-        setTimeout(() => setStatus('idle'), 3000);
-      } else {
-        setStatus('error');
-        setTimeout(() => setStatus('idle'), 3000);
-      }
+      // Como estamos usando no-cors, não podemos ler a resposta
+      // Vamos assumir que deu certo se não houver erro
+      setEmail('');
+      setStatus('success');
+      setTimeout(() => setStatus('idle'), 3000);
     } catch (error) {
       console.error('Error:', error);
       setStatus('error');
@@ -184,24 +182,35 @@ function App() {
                   letterSpacing: '0px',
                   lineHeight: '1.5',
                   background: 'transparent',
-                  color: 'rgb(252, 246, 242)',
+                  color: status === 'error' ? '#DC0017' : 
+                         status === 'success' ? '#00FF9D' : 
+                         'rgb(252, 246, 242)',
                   border: 'none',
                   zIndex: 1,
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
                   gap: '8px',
-                  opacity: status === 'loading' ? 0.7 : 1
+                  opacity: status === 'loading' ? 0.7 : 1,
+                  transition: 'color 0.3s ease'
                 }}
                 className="hover:bg-white/10 transition-colors"
               >
-                <span style={{ fontSize: '15px', whiteSpace: 'nowrap' }}>
+                <span style={{ 
+                  fontSize: '15px', 
+                  whiteSpace: 'nowrap',
+                }}>
                   {status === 'loading' ? 'Enviando...' : 
-                   status === 'success' ? 'Cadastrado!' : 
-                   status === 'error' ? 'Erro, tente novamente' : 
+                   status === 'success' ? 'Cadastrado com sucesso!' : 
+                   status === 'error' ? 'Erro ao cadastrar. Tente novamente.' : 
                    'Cadastre-se'}
                 </span>
-                <span style={{ fontSize: '15px' }}>→</span>
+                <span style={{ 
+                  fontSize: '15px',
+                  color: status === 'error' ? '#DC0017' : 
+                          status === 'success' ? '#00FF9D' : 
+                          'rgb(252, 246, 242)'
+                }}>→</span>
               </button>
             </form>
           </div>
