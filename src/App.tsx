@@ -11,20 +11,24 @@ function App() {
     e.preventDefault();
     
     try {
-      const response = await fetch('https://submit.loops.so/8562539f876179b3d93d19c1210a61e0', {
-        method: 'POST',
+      const formBody = `email=${encodeURIComponent(email)}`;
+
+      const response = await fetch("https://app.loops.so/api/newsletter-form/8562539f876179b3d93d19c1210a61e0", {
+        method: "POST",
+        body: formBody,
         headers: {
-          'Content-Type': 'application/json'
+          "Content-Type": "application/x-www-form-urlencoded",
         },
-        body: JSON.stringify({ email }),
-        mode: 'no-cors'
       });
+
+      const data = await response.json();
       
-      // Como estamos usando no-cors, não podemos ler a resposta
-      // Vamos assumir que deu certo se não houver erro
-      setEmail('');
-      alert('Obrigado por se cadastrar!');
-      
+      if (data.success) {
+        setEmail('');
+        alert('Obrigado por se cadastrar!');
+      } else {
+        alert(data.message || 'Erro ao se cadastrar. Tente novamente.');
+      }
     } catch (error) {
       console.error('Error:', error);
       alert('Erro ao se cadastrar. Tente novamente.');
@@ -143,9 +147,15 @@ function App() {
             <p style={{ color: '#8B949E', marginBottom: '12px', fontSize: '16px' }}>
               Deixe um agente IA lembrar você quando o site for lançado.
             </p>
-            <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '0' }}>
+            <form 
+              onSubmit={handleSubmit}
+              method="post"
+              action="https://app.loops.so/api/newsletter-form/8562539f876179b3d93d19c1210a61e0"
+              style={{ display: 'flex', flexDirection: 'column', gap: '0' }}
+            >
               <input
                 type="email"
+                name="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Insira seu email..."
