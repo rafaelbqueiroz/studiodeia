@@ -15,14 +15,21 @@ function App() {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'Accept': 'application/json',
+          'Origin': 'https://studiodeia.com.br'
         },
-        body: JSON.stringify({ email }),
+        body: JSON.stringify({ 
+          email,
+          source: 'studiodeia.com.br'
+        }),
       });
       
       if (response.ok) {
         setEmail('');
         alert('Obrigado por se cadastrar!');
       } else {
+        const error = await response.json();
+        console.error('Loops API Error:', error);
         alert('Erro ao se cadastrar. Tente novamente.');
       }
     } catch (error) {
