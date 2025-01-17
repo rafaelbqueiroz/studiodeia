@@ -6,34 +6,16 @@ function App() {
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
 
   // Função apenas para feedback visual
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    
-    try {
-      setStatus('loading');
+  const handleSubmit = (e: React.FormEvent) => {
+    setStatus('loading');
+    // O formulário será enviado naturalmente pelo HTML
+  };
 
-      const formData = new URLSearchParams();
-      formData.append('email', email);
-
-      await fetch('https://www.loops.so/api/newsletter-form/clrqxpzs8000008l78hk4d4ql', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        body: formData.toString(),
-        mode: 'no-cors'
-      });
-
-      // No modo no-cors não podemos ler a resposta
-      // Vamos assumir que deu certo se não houver erro
-      setEmail('');
-      setStatus('success');
-      setTimeout(() => setStatus('idle'), 3000);
-    } catch (error) {
-      console.error('Error:', error);
-      setStatus('error');
-      setTimeout(() => setStatus('idle'), 3000);
-    }
+  // Função para mostrar sucesso após o envio
+  const handleLoad = () => {
+    setEmail('');
+    setStatus('success');
+    setTimeout(() => setStatus('idle'), 3000);
   };
 
   return (
@@ -150,6 +132,9 @@ function App() {
             </p>
             <form 
               onSubmit={handleSubmit}
+              method="post"
+              target="hiddenFrame"
+              action="https://app.loops.so/api/newsletter-form/cm60tnsb803wacm4gfez9lybc"
               style={{ display: 'flex', flexDirection: 'column', gap: '0' }}
             >
               <input
@@ -218,6 +203,11 @@ function App() {
                 }}>→</span>
               </button>
             </form>
+            <iframe 
+              name="hiddenFrame"
+              style={{ display: 'none' }}
+              onLoad={handleLoad}
+            />
           </div>
         </div>
       </main>
