@@ -4,6 +4,15 @@ import react from '@vitejs/plugin-react'
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
+  server: {
+    proxy: {
+      '/api/newsletter-form': {
+        target: 'https://app.loops.so',
+        changeOrigin: true,
+        secure: false,
+      }
+    }
+  },
   optimizeDeps: {
     exclude: ['lucide-react'],
   },
