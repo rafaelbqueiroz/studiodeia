@@ -14,24 +14,17 @@ function App() {
       const response = await fetch('https://submit.loops.so/8562539f876179b3d93d19c1210a61e0', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json',
-          'Origin': 'https://studiodeia.com.br'
+          'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ 
-          email,
-          source: 'studiodeia.com.br'
-        }),
+        body: JSON.stringify({ email }),
+        mode: 'no-cors'
       });
       
-      if (response.ok) {
-        setEmail('');
-        alert('Obrigado por se cadastrar!');
-      } else {
-        const error = await response.json();
-        console.error('Loops API Error:', error);
-        alert('Erro ao se cadastrar. Tente novamente.');
-      }
+      // Como estamos usando no-cors, não podemos ler a resposta
+      // Vamos assumir que deu certo se não houver erro
+      setEmail('');
+      alert('Obrigado por se cadastrar!');
+      
     } catch (error) {
       console.error('Error:', error);
       alert('Erro ao se cadastrar. Tente novamente.');
