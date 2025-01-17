@@ -6,16 +6,39 @@ function App() {
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
 
   // Função apenas para feedback visual
-  const handleSubmit = (e: React.FormEvent) => {
-    setStatus('loading');
-    // O formulário será enviado naturalmente pelo HTML
-  };
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    try {
+      setStatus('loading');
 
-  // Função para mostrar sucesso após o envio
-  const handleLoad = () => {
-    setEmail('');
-    setStatus('success');
-    setTimeout(() => setStatus('idle'), 3000);
+      // Usando o endpoint direto do Loops
+      const response = await fetch('https://submit.loops.so/8562539f876179b3d93d19c1210a61e0', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email,
+          source: 'Studio de IA Landing Page'
+        })
+      });
+
+      if (response.ok) {
+        setEmail('');
+        setStatus('success');
+        setTimeout(() => setStatus('idle'), 3000);
+      } else {
+        const error = await response.json();
+        console.error('Loops error:', error);
+        setStatus('error');
+        setTimeout(() => setStatus('idle'), 3000);
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      setStatus('error');
+      setTimeout(() => setStatus('idle'), 3000);
+    }
   };
 
   return (
@@ -132,9 +155,6 @@ function App() {
             </p>
             <form 
               onSubmit={handleSubmit}
-              method="post"
-              target="hiddenFrame"
-              action="https://app.loops.so/api/newsletter-form/clrqxpzs8000008l78hk4d4ql"
               style={{ display: 'flex', flexDirection: 'column', gap: '0' }}
             >
               <input
@@ -203,11 +223,6 @@ function App() {
                 }}>→</span>
               </button>
             </form>
-            <iframe 
-              name="hiddenFrame"
-              style={{ display: 'none' }}
-              onLoad={handleLoad}
-            />
           </div>
         </div>
       </main>
