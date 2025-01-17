@@ -4,30 +4,23 @@ import { X } from 'lucide-react';
 function App() {
   const [email, setEmail] = useState('');
 
-  // Replace FORM_ID with your actual Loops form ID
-  const FORM_ID = 'clrqxpzs8000008l78hk4d4ql';
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
     try {
-      const formBody = `email=${encodeURIComponent(email)}`;
-
-      const response = await fetch(`https://app.loops.so/api/newsletter-form/${FORM_ID}`, {
+      const response = await fetch("https://submit.loops.so/8562539f876179b3d93d19c1210a61e0", {
         method: "POST",
-        body: formBody,
+        body: JSON.stringify({ email }),
         headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
+          "Content-Type": "application/json",
         },
       });
 
-      const data = await response.json();
-      
-      if (data.success) {
+      if (response.ok) {
         setEmail('');
         alert('Obrigado por se cadastrar!');
       } else {
-        alert(data.message || 'Erro ao se cadastrar. Tente novamente.');
+        alert('Erro ao se cadastrar. Tente novamente.');
       }
     } catch (error) {
       console.error('Error:', error);
@@ -149,8 +142,6 @@ function App() {
             </p>
             <form 
               onSubmit={handleSubmit}
-              method="post"
-              action={`https://app.loops.so/api/newsletter-form/${FORM_ID}`}
               style={{ display: 'flex', flexDirection: 'column', gap: '0' }}
             >
               <input
