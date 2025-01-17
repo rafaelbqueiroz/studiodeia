@@ -11,7 +11,7 @@ function App() {
     e.preventDefault();
     
     try {
-      const response = await fetch(`https://submit.loops.so/${FORM_ID}`, {
+      const response = await fetch('https://submit.loops.so/8562539f876179b3d93d19c1210a61e0', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -20,11 +20,14 @@ function App() {
       });
       
       if (response.ok) {
-        alert('Cadastro realizado com sucesso!');
         setEmail('');
+        alert('Obrigado por se cadastrar!');
+      } else {
+        alert('Erro ao se cadastrar. Tente novamente.');
       }
     } catch (error) {
-      console.error('Error submitting form:', error);
+      console.error('Error:', error);
+      alert('Erro ao se cadastrar. Tente novamente.');
     }
   };
 
@@ -41,7 +44,9 @@ function App() {
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
           <a
-            href="#"
+            href="https://wa.me/5554993461322"
+            target="_blank"
+            rel="noopener noreferrer"
             style={{
               backgroundColor: '#FFFFFF',
               borderRadius: '8px',
@@ -66,8 +71,12 @@ function App() {
               button.style.backgroundColor = '#DC0017';
               button.style.borderColor = '#DC0017';
               const textDiv = button.querySelector('div');
+              const svg = button.querySelector('svg');
               if (textDiv) {
                 textDiv.style.color = '#FFFFFF';
+              }
+              if (svg) {
+                svg.style.color = '#FFFFFF';
               }
             }}
             onMouseLeave={(e) => {
@@ -75,8 +84,12 @@ function App() {
               button.style.backgroundColor = '#FFFFFF';
               button.style.borderColor = '#DC0017';
               const textDiv = button.querySelector('div');
+              const svg = button.querySelector('svg');
               if (textDiv) {
                 textDiv.style.color = '#DC0017';
+              }
+              if (svg) {
+                svg.style.color = '#DC0017';
               }
             }}
           >
@@ -90,8 +103,8 @@ function App() {
               whiteSpace: 'nowrap'
             }}>
               Agende uma Demo
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" focusable="false" color="rgb(220, 0, 23)" style={{ width: '22.5px', height: '22.5px', display: 'block', fill: 'currentColor', flexShrink: 0 }}>
-                <g color="rgb(220, 0, 23)" weight="thin">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" focusable="false" style={{ width: '22.5px', height: '22.5px', display: 'block', fill: 'currentColor', flexShrink: 0, color: '#DC0017' }}>
+                <g weight="thin">
                   <path d="M196,64V168a4,4,0,0,1-8,0V73.66L66.83,194.83a4,4,0,0,1-5.66-5.66L182.34,68H88a4,4,0,0,1,0-8H192A4,4,0,0,1,196,64Z"/>
                 </g>
               </svg>
@@ -103,33 +116,6 @@ function App() {
       {/* Main Content */}
       <main style={{ paddingTop: '96px' }} className="px-4">
         <div className="max-w-4xl mx-auto text-center">
-          <div 
-            style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '8px',
-              padding: '8px 16px',
-              marginBottom: '24px',
-              borderWidth: '1px',
-              borderColor: 'rgba(252, 246, 242, 0.2)',
-              borderStyle: 'solid',
-              borderRadius: '40px',
-              boxShadow: 'rgba(167, 189, 0, 0.05) 0px 1px 2px 0px',
-              opacity: 1,
-              fontSize: '12px',
-              lineHeight: '12px',
-            }}
-          >
-            <span style={{
-              backgroundImage: 'linear-gradient(90deg, rgba(252, 246, 242, 0.75) 0%, rgba(252, 246, 242, 0.9) 100%)',
-              WebkitBackgroundClip: 'text',
-              backgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-            }}>
-              Nosso site está em construção, mas já estamos transformando o futuro.
-            </span>
-          </div>
-
           <h1 style={{ fontSize: '64px', fontWeight: 'bold', marginBottom: '24px', color: '#FCF6F2', lineHeight: '100%' }}>
             <span className="framer-text block mb-2" style={{
               color: '#FCF6F2',
