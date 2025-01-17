@@ -3,12 +3,14 @@ import { X } from 'lucide-react';
 
 function App() {
   const [email, setEmail] = useState('');
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
     try {
-      const response = await fetch("https://submit.loops.so/8562539f876179b3d93d19c1210a61e0", {
+      setStatus('loading');
+      const response = await fetch("https://www.loops.so/api/v1/forms/8562539f876179b3d93d19c1210a61e0", {
         method: "POST",
         body: JSON.stringify({ email }),
         headers: {
@@ -18,13 +20,16 @@ function App() {
 
       if (response.ok) {
         setEmail('');
-        alert('Obrigado por se cadastrar!');
+        setStatus('success');
+        setTimeout(() => setStatus('idle'), 3000);
       } else {
-        alert('Erro ao se cadastrar. Tente novamente.');
+        setStatus('error');
+        setTimeout(() => setStatus('idle'), 3000);
       }
     } catch (error) {
       console.error('Error:', error);
-      alert('Erro ao se cadastrar. Tente novamente.');
+      setStatus('error');
+      setTimeout(() => setStatus('idle'), 3000);
     }
   };
 
@@ -164,12 +169,13 @@ function App() {
               />
               <button
                 type="submit"
+                disabled={status === 'loading'}
                 style={{
                   WebkitAppearance: 'none',
                   appearance: 'none',
                   width: '100%',
                   outline: 'none',
-                  cursor: 'pointer',
+                  cursor: status === 'loading' ? 'wait' : 'pointer',
                   padding: '16px',
                   borderRadius: '16px',
                   fontWeight: 400,
@@ -184,11 +190,17 @@ function App() {
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  gap: '8px'
+                  gap: '8px',
+                  opacity: status === 'loading' ? 0.7 : 1
                 }}
                 className="hover:bg-white/10 transition-colors"
               >
-                <span style={{ fontSize: '15px', whiteSpace: 'nowrap' }}>Cadastre-se</span>
+                <span style={{ fontSize: '15px', whiteSpace: 'nowrap' }}>
+                  {status === 'loading' ? 'Enviando...' : 
+                   status === 'success' ? 'Cadastrado!' : 
+                   status === 'error' ? 'Erro, tente novamente' : 
+                   'Cadastre-se'}
+                </span>
                 <span style={{ fontSize: '15px' }}>→</span>
               </button>
             </form>
