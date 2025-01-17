@@ -12,16 +12,16 @@ function App() {
     try {
       setStatus('loading');
 
-      // Usando o endpoint direto do Loops
-      const response = await fetch('https://submit.loops.so/8562539f876179b3d93d19c1210a61e0', {
+      // Usando www e x-www-form-urlencoded
+      const formData = new URLSearchParams();
+      formData.append('email', email);
+
+      const response = await fetch('https://www.loops.so/api/newsletter-form/clrqxpzs8000008l78hk4d4ql', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
+          'Content-Type': 'application/x-www-form-urlencoded',
         },
-        body: JSON.stringify({
-          email,
-          source: 'Studio de IA Landing Page'
-        })
+        body: formData.toString()
       });
 
       if (response.ok) {
