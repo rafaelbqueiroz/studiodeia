@@ -91,7 +91,7 @@ function App() {
             }}>
               Agende uma Demo
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" focusable="false" style={{ width: '22.5px', height: '22.5px', display: 'block', fill: 'currentColor', flexShrink: 0, color: '#DC0017' }}>
-                <g weight="thin">
+                <g style={{ strokeWidth: "thin" }}>
                   <path d="M196,64V168a4,4,0,0,1-8,0V73.66L66.83,194.83a4,4,0,0,1-5.66-5.66L182.34,68H88a4,4,0,0,1,0-8H192A4,4,0,0,1,196,64Z"/>
                 </g>
               </svg>
@@ -109,26 +109,26 @@ function App() {
               fontSize: '64px',
               lineHeight: '100%',
             }}>
-              Simplificamos o
+              Inteligência Aplicada que
             </span>
             <span className="framer-text block" style={{
               color: '#FCF6F2',
               fontSize: '64px',
               lineHeight: '100%',
             }}>
-              complexo.
+              Transforma Negócios.
             </span>
           </h1>
 
           <div style={{ marginBottom: '64px', fontSize: '16px' }}>
-            <span className="font-semibold text-white">Agentes IA</span>
-            <span className="text-[#8B949E]"> que automatizam tarefas repetitivas e entregam resultados para empresas que querem crescer.</span>
+            <span className="font-semibold text-white">IA³:</span>
+            <span className="text-[#8B949E]"> IA³: Análise humana, ação estratégica e resultados reais para empresas que querem crescer.</span>
           </div>
 
           {/* Form Section */}
           <div className="max-w-xl mx-auto">
             <p style={{ color: '#8B949E', marginBottom: '12px', fontSize: '16px' }}>
-              Deixe um agente IA lembrar você quando o site for lançado.
+            Seja o primeiro a saber quando o futuro da inteligência empresarial for lançado.
             </p>
             <form 
               onSubmit={handleSubmit}
