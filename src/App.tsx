@@ -122,7 +122,7 @@ function App() {
 
           <div style={{ marginBottom: '64px', fontSize: '16px' }}>
             <span className="font-semibold text-white">IA³:</span>
-            <span className="text-[#8B949E]"> IA³: Análise humana, ação estratégica e resultados reais para empresas que querem crescer.</span>
+            <span className="text-[#8B949E]"> Análise humana, ação estratégica e resultados reais para empresas que querem crescer.</span>
           </div>
 
           {/* Form Section */}
