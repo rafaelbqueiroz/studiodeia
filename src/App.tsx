@@ -1,7 +1,15 @@
 import React, { useState } from 'react';
+import { AuthProvider, useAuth } from './components/AuthProvider';
+import { LoginPage } from './components/LoginPage';
 import { X } from 'lucide-react';
 
-function App() {
+function ProtectedContent() {
+  const { isAuthenticated } = useAuth();
+  
+  if (!isAuthenticated) {
+    return <LoginPage />;
+  }
+
   const [email, setEmail] = useState('');
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
 
@@ -212,6 +220,14 @@ function App() {
         </div>
       </main>
     </div>
+  );
+}
+
+function App() {
+  return (
+    <AuthProvider>
+      <ProtectedContent />
+    </AuthProvider>
   );
 }
 
