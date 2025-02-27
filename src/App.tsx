@@ -80,16 +80,16 @@ function App() {
               }
             }}
           >
-            <div style={{ 
-              display: 'flex', 
-              alignItems: 'center', 
+            <div style={{
+              display: 'flex',
+              alignItems: 'center',
               gap: '8px',
               color: '#FFFFFF',
               fontSize: '15px',
               fontWeight: 400,
               whiteSpace: 'nowrap'
             }}>
-              Agende uma Demo
+              Demo
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" focusable="false" style={{ width: '22.5px', height: '22.5px', display: 'block', fill: 'currentColor', flexShrink: 0, color: '#FFFFFF' }}>
                 <g style={{ strokeWidth: "thin" }}>
                   <path d="M196,64V168a4,4,0,0,1-8,0V73.66L66.83,194.83a4,4,0,0,1-5.66-5.66L182.34,68H88a4,4,0,0,1,0-8H192A4,4,0,0,1,196,64Z"/>
@@ -106,14 +106,14 @@ function App() {
           <h1 style={{ fontSize: '64px', fontWeight: 'bold', marginBottom: '24px', color: '#FCF6F2', lineHeight: '100%' }}>
             <span className="framer-text block mb-2" style={{
               color: '#FCF6F2',
-              fontSize: '64px',
+              fontSize: window.innerWidth < 768 ? '48px' : '64px',
               lineHeight: '100%',
             }}>
               Inteligência Aplicada que
             </span>
             <span className="framer-text block" style={{
               color: '#FCF6F2',
-              fontSize: '64px',
+              fontSize: window.innerWidth < 768 ? '48px' : '64px',
               lineHeight: '100%',
             }}>
               Transforma Negócios.
