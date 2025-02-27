@@ -31,7 +31,7 @@ function App() {
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
           <a
-            href="https://wa.me/5554993461322"
+            href="https://wa.me/5554981060142"
             target="_blank"
             rel="noopener noreferrer"
             style={{
