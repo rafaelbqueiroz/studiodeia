@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+.max-w-4xl {
+  max-width: 58rem;
+}
+
 .sr-only {
   position: absolute;
   width: 1px;
