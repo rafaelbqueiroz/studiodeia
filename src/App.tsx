@@ -1,9 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
+import { PrivacyPolicyModal } from './components/PrivacyPolicyModal';
 import { X } from 'lucide-react';
 
 function App() {
   const [email, setEmail] = useState('');
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleOpenModal = useCallback((e: React.MouseEvent) => {
+    e.preventDefault();
+    setIsModalOpen(true);
+  }, []);
+
+  const handleCloseModal = useCallback(() => {
+    setIsModalOpen(false);
+  }, []);
 
   // Função apenas para feedback visual
   const handleSubmit = (e: React.FormEvent) => {
@@ -27,7 +38,7 @@ function App() {
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
           <a
-            href="https://wa.me/5554981060142"
+            href="https://wa.me/5554993461322"
             target="_blank"
             rel="noopener noreferrer"
             style={{
@@ -99,31 +110,34 @@ function App() {
       {/* Main Content */}
       <main style={{ paddingTop: '96px' }} className="px-4">
         <div className="max-w-4xl mx-auto text-center">
-          <h1 style={{ fontSize: '64px', fontWeight: 'bold', marginBottom: '24px', color: '#FCF6F2', lineHeight: '100%' }}>
+          <h1 style={{ fontSize: '48px', fontWeight: 'bold', marginBottom: '24px', color: '#FCF6F2', lineHeight: '100%' }}>
             <span className="framer-text block mb-2" style={{
               color: '#FCF6F2',
-              fontSize: window.innerWidth < 768 ? '48px' : '64px',
+              fontSize: '48px',
               lineHeight: '100%',
             }}>
-              GuardAgent™: IA segura, auditável e compliance by design
+              GuardAgent™: IA que entende a LGPD, rastreável desde a origem
             </span>
             <span className="framer-text block" style={{
               color: '#FCF6F2',
-              fontSize: window.innerWidth < 768 ? '48px' : '64px',
+              fontSize: '48px',
               lineHeight: '100%',
             }}>
-              Rastreável e pronta para o mundo real.
+              Transparente, auditável e preparada para o mundo real.
             </span>
           </h1>
 
           <div style={{ marginBottom: '64px', fontSize: '16px' }}>
-            <span className="text-[#8B949E]">Rastreável e pronta para o mundo real.</span>
+            <span className="text-[#8B949E]">Sua próxima IA já nasce segura — com consentimento, registro e trilha de auditoria desde o primeiro byte.</span>
           </div>
 
           {/* Form Section */}
           <div className="max-w-xl mx-auto">
             <p style={{ color: '#8B949E', marginBottom: '12px', fontSize: '16px' }}>
-            Seja o primeiro a conhecer o GuardAgent™ quando nosso novo site for lançado.
+              Cadastre seu e-mail para ser avisado assim que o GuardAgent™ estiver disponível.
+            </p>
+            <p style={{ color: '#8B949E', marginBottom: '16px', fontSize: '14px' }}>
+              Receba em primeira mão o acesso à demo, materiais técnicos e bônus de lançamento.
             </p>
             <form 
               onSubmit={handleSubmit}
@@ -203,6 +217,27 @@ function App() {
               style={{ display: 'none' }}
               onLoad={handleLoad}
             />
+            <div style={{ marginTop: '16px', textAlign: 'center' }}>
+              <p style={{ fontSize: '12px', color: '#8B949E', marginBottom: '8px' }}>
+                Garantimos sua privacidade. Nenhum spam, só conteúdo útil.
+              </p>
+              <p style={{ fontSize: '12px', color: '#8B949E' }}>
+                Ao informar seu e-mail, você concorda com o tratamento dos seus dados conforme nossa{' '}
+                <a 
+                  href="#" 
+                  onClick={handleOpenModal}
+                  style={{ 
+                    color: '#FCF6F2', 
+                    textDecoration: 'underline',
+                    cursor: 'pointer'
+                  }}
+                >
+                  Política de Privacidade
+                </a>
+                .
+              </p>
+            </div>
+            <PrivacyPolicyModal isOpen={isModalOpen} onClose={handleCloseModal} />
           </div>
         </div>
       </main>
