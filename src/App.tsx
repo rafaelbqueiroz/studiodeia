@@ -126,7 +126,7 @@ function App() {
 
           {/* Form Section */}
           <div className="max-w-xl mx-auto">
-            <p style={{ color: '#8B949E', marginBottom: '12px', fontSize: '16px' }}>
+            <p style={{ color: 'rgb(252, 246, 242)', marginBottom: '0', fontSize: '18px' }}>
               Cadastre seu e-mail e seja avisado com exclusividade no lançamento.
             </p>
             <p style={{ color: '#8B949E', marginBottom: '16px', fontSize: '14px' }}>
