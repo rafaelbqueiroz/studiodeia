@@ -1,8 +1,8 @@
 {
   "rewrites": [
     {
-      "source": "/api/newsletter-form/:path*",
-      "destination": "https://app.loops.so/api/newsletter-form/:path*"
+      "source": "/(.*)",
+      "destination": "/index.html"
     }
   ]
 }
