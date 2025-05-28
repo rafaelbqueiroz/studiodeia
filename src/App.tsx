@@ -1,21 +1,9 @@
-import React, { useState, useCallback } from 'react';
-import { PrivacyPolicyModal } from './components/PrivacyPolicyModal';
-import { X } from 'lucide-react';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 function App() {
   const [email, setEmail] = useState('');
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const handleOpenModal = useCallback((e: React.MouseEvent) => {
-    e.preventDefault();
-    setIsModalOpen(true);
-  }, []);
-
-  const handleCloseModal = useCallback(() => {
-    setIsModalOpen(false);
-  }, []);
-
   // Função apenas para feedback visual
   const handleSubmit = (e: React.FormEvent) => {
     setStatus('loading');
@@ -224,9 +212,8 @@ function App() {
                 display: 'inline-block'
               }}>
                 Ao cadastrar seu e-mail, você concorda em receber comunicações do Studio de IA e com nossa{' '}
-                <a 
-                  href="#" 
-                  onClick={handleOpenModal}
+                <Link 
+                  to="/politica-de-privacidade"
                   style={{ 
                     color: '#FCF6F2', 
                     textDecoration: 'underline',
@@ -234,11 +221,32 @@ function App() {
                   }}
                 >
                   Política de Privacidade
-                </a>
+                </Link>
+                {', nossos '}
+                <Link 
+                  to="/termos-de-uso"
+                  style={{ 
+                    color: '#FCF6F2', 
+                    textDecoration: 'underline',
+                    cursor: 'pointer'
+                  }}
+                >
+                  Termos de Uso
+                </Link>
+                {' e '}
+                <Link 
+                  to="/politica-de-cookies"
+                  style={{ 
+                    color: '#FCF6F2', 
+                    textDecoration: 'underline',
+                    cursor: 'pointer'
+                  }}
+                >
+                  Política de Cookies
+                </Link>
                 .
               </p>
             </div>
-            <PrivacyPolicyModal isOpen={isModalOpen} onClose={handleCloseModal} />
           </div>
         </div>
       </main>
