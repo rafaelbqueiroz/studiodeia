@@ -124,7 +124,7 @@ export function PrivacyPolicy() {
             <section style={{ marginBottom: '32px' }}>
               <h2 style={{ fontSize: '24px', fontWeight: 'bold', marginBottom: '16px' }}>14. Encarregado pelo Tratamento de Dados Pessoais (DPO)</h2>
               <p>O Studio de IA nomeou um Encarregado (DPO), responsável por atuar como canal de comunicação entre o Studio, os titulares de dados e a ANPD.</p>
-              <p>📧 E-mail para contato: contato@studiodeia.com.br</p>
+              <p>📧 E-mail para contato: dpo@studiodeia.com.br</p>
             </section>
 
             <p style={{ marginTop: '32px', fontSize: '14px', color: '#8B949E' }}>Última atualização: 28 de maio de 2025</p>
