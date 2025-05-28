@@ -116,25 +116,18 @@ function App() {
               fontSize: '48px',
               lineHeight: '100%',
             }}>
-              GuardAgent™: IA que entende a LGPD, rastreável desde a origem
-            </span>
-            <span className="framer-text block" style={{
-              color: '#FCF6F2',
-              fontSize: '48px',
-              lineHeight: '100%',
-            }}>
-              Transparente, auditável e preparada para o mundo real.
+              GuardAgent™: IA segura, rastreável e pronta para o mundo real.
             </span>
           </h1>
 
-          <div style={{ marginBottom: '64px', fontSize: '16px' }}>
-            <span className="text-[#8B949E]">Sua próxima IA já nasce segura — com consentimento, registro e trilha de auditoria desde o primeiro byte.</span>
+          <div style={{ marginBottom: '64px', fontSize: '24px' }}>
+            <span className="text-[#8B949E]">Com consentimento, trilha de auditoria e conformidade LGPD desde o primeiro byte.</span>
           </div>
 
           {/* Form Section */}
           <div className="max-w-xl mx-auto">
             <p style={{ color: '#8B949E', marginBottom: '12px', fontSize: '16px' }}>
-              Cadastre seu e-mail para ser avisado assim que o GuardAgent™ estiver disponível.
+              Cadastre seu e-mail e seja avisado com exclusividade no lançamento.
             </p>
             <p style={{ color: '#8B949E', marginBottom: '16px', fontSize: '14px' }}>
               Receba em primeira mão o acesso à demo, materiais técnicos e bônus de lançamento.
@@ -202,7 +195,7 @@ function App() {
                   {status === 'loading' ? 'Enviando...' : 
                    status === 'success' ? 'Cadastrado com sucesso!' : 
                    status === 'error' ? 'Erro ao cadastrar. Tente novamente.' : 
-                  'Cadastre seu e-mail e receba o aviso de lançamento'}
+                  'Quero ser avisado'}
                 </span>
                 <span style={{ 
                   fontSize: '15px',
