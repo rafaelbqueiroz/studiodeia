@@ -139,12 +139,15 @@ function App() {
               action="https://app.loops.so/api/newsletter-form/cm60tnsb803wacm4gfez9lybc"
               style={{ display: 'flex', flexDirection: 'column', gap: '0' }}
             >
+              <label htmlFor="email" className="sr-only">Seu e-mail</label>
               <input
+                id="email"
                 type="email"
                 name="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Insira seu email..."
+                aria-label="Campo para inserir seu e-mail"
                 style={{
                   width: '100%',
                   padding: '16px',
@@ -160,6 +163,7 @@ function App() {
               <button
                 type="submit"
                 disabled={status === 'loading'}
+                aria-label="Cadastrar e receber aviso de lançamento"
                 style={{
                   WebkitAppearance: 'none',
                   appearance: 'none',
@@ -210,12 +214,16 @@ function App() {
               style={{ display: 'none' }}
               onLoad={handleLoad}
             />
-            <div style={{ marginTop: '16px', textAlign: 'center' }}>
+            <div style={{ marginTop: '16px', textAlign: 'center', maxWidth: '500px', margin: '16px auto 0' }}>
               <p style={{ fontSize: '12px', color: '#8B949E', marginBottom: '8px' }}>
                 Garantimos sua privacidade. Nenhum spam, só conteúdo útil.
               </p>
-              <p style={{ fontSize: '12px', color: '#8B949E' }}>
-                Ao informar seu e-mail, você concorda com o tratamento dos seus dados conforme nossa{' '}
+              <p style={{ 
+                fontSize: '12px', 
+                color: '#8B949E',
+                display: 'inline-block'
+              }}>
+                Ao cadastrar seu e-mail, você concorda em receber comunicações do Studio de IA e com nossa{' '}
                 <a 
                   href="#" 
                   onClick={handleOpenModal}
